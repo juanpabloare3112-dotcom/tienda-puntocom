@@ -1,1 +1,488 @@
-<h1>TIENDA PUNTOCOM</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PuntoCom | Tienda Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b12;
+            color: white;
+        }
+
+        header {
+            background: linear-gradient(135deg, #111827, #080b12);
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #252b38;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        .subtitulo {
+            color: #9ca3af;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        nav {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: #171c28;
+            border: 1px solid #303746;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        nav button:hover {
+            background: #7c3aed;
+        }
+
+        .hero {
+            padding: 55px 20px;
+            text-align: center;
+            background:
+                radial-gradient(circle at top, #25144d 0%, #080b12 55%);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #a855f7;
+        }
+
+        .hero p {
+            color: #c4c8d0;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .contenedor {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px 70px;
+        }
+
+        .titulo-seccion {
+            font-size: 26px;
+            margin: 35px 0 20px;
+        }
+
+        .titulo-seccion span {
+            color: #a855f7;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .producto {
+            background: #111621;
+            border: 1px solid #252c3a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 35px rgba(124,58,237,0.18);
+        }
+
+        .producto img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #171c27;
+        }
+
+        .producto-contenido {
+            padding: 18px;
+        }
+
+        .producto h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .descripcion {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 42px;
+        }
+
+        .precio {
+            font-size: 23px;
+            font-weight: bold;
+            color: #a78bfa;
+            margin: 15px 0;
+        }
+
+        .boton {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .boton:hover {
+            opacity: 0.85;
+        }
+
+        .info {
+            margin-top: 45px;
+            background: #111621;
+            border: 1px solid #252c3a;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .info h2 {
+            margin-bottom: 12px;
+        }
+
+        .info p {
+            color: #aeb4c0;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #252b38;
+            color: #777f8e;
+            font-size: 14px;
+        }
+
+        .whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            z-index: 2000;
+        }
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .producto img {
+                height: 190px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        PUNTO<span>COM</span>
+    </div>
+
+    <div class="subtitulo">
+        Tienda online de productos digitales
+    </div>
+
+    <nav>
+        <button onclick="mostrar('todos')">Todos</button>
+        <button onclick="mostrar('juegos')">🎮 Juegos</button>
+        <button onclick="mostrar('streaming')">🎬 Streaming</button>
+        <button onclick="mostrar('tv')">📺 TV Digital</button>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>
+        Todo lo digital,<br>
+        <span>en un solo lugar</span>
+    </h1>
+
+    <p>
+        Juegos digitales, servicios de streaming y TV Digital.
+        Elegí tu producto y consultanos directamente por WhatsApp.
+    </p>
+
+</section>
+
+
+<main class="contenedor">
+
+    <h2 class="titulo-seccion">
+        🔥 <span>Productos destacados</span>
+    </h2>
+
+
+    <div class="productos">
+
+
+        <!-- JUEGO 1 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400?text=JUEGO+PS5"
+                alt="Juego PS5"
+            >
+
+            <div class="producto-contenido">
+
+                <h3>🎮 Juego PS5</h3>
+
+                <p class="descripcion">
+                    Juego digital para PlayStation 5.
+                </p>
+
+                <div class="precio">
+                    $25.000
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://wa.me/549TU_NUMERO?text=Hola!%20Quiero%20consultar%20por%20el%20Juego%20PS5"
+                    target="_blank"
+                >
+                    Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- JUEGO 2 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400?text=JUEGO+PS4"
+                alt="Juego PS4"
+            >
+
+            <div class="producto-contenido">
+
+                <h3>🎮 Juego PS4</h3>
+
+                <p class="descripcion">
+                    Juegos digitales para PlayStation 4.
+                </p>
+
+                <div class="precio">
+                    $18.000
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://wa.me/549TU_NUMERO?text=Hola!%20Quiero%20consultar%20por%20un%20Juego%20PS4"
+                    target="_blank"
+                >
+                    Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- YOUTUBE -->
+
+        <article class="producto streaming">
+
+            <img
+                src="https://via.placeholder.com/600x400?text=YOUTUBE+PREMIUM"
+                alt="YouTube Premium"
+            >
+
+            <div class="producto-contenido">
+
+                <h3>▶️ YouTube Premium</h3>
+
+                <p class="descripcion">
+                    Cuenta privada. 30 días. Sin anuncios.
+                </p>
+
+                <div class="precio">
+                    $8.000
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://wa.me/549TU_NUMERO?text=Hola!%20Quiero%20YouTube%20Premium"
+                    target="_blank"
+                >
+                    Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- TV DIGITAL -->
+
+        <article class="producto tv">
+
+            <img
+                src="https://via.placeholder.com/600x400?text=TV+DIGITAL"
+                alt="TV Digital"
+            >
+
+            <div class="producto-contenido">
+
+                <h3>📺 TV Digital</h3>
+
+                <p class="descripcion">
+                    Canales en vivo, películas, series,
+                    deportes y entretenimiento.
+                </p>
+
+                <div class="precio">
+                    $8.800
+                </div>
+
+                <a
+                    class="boton"
+                    href="https://wa.me/549TU_NUMERO?text=Hola!%20Quiero%20consultar%20por%20TV%20Digital"
+                    target="_blank"
+                >
+                    Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <div class="info">
+
+        <h2>🚀 ¿Cómo comprar?</h2>
+
+        <p>
+            Elegí el producto que te interesa,
+            tocá el botón de WhatsApp y escribinos.
+            Te responderemos con disponibilidad,
+            medios de pago y entrega.
+        </p>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    © 2026 PUNTOCOM — Tienda Digital
+
+</footer>
+
+
+<a
+    class="whatsapp"
+    href="https://wa.me/549TU_NUMERO"
+    target="_blank"
+    aria-label="WhatsApp"
+>
+    ☎
+</a>
+
+
+<script>
+
+function mostrar(categoria) {
+
+    const productos = document.querySelectorAll('.producto');
+
+    productos.forEach(producto => {
+
+        if (categoria === 'todos') {
+
+            producto.style.display = 'block';
+
+        } else {
+
+            if (producto.classList.contains(categoria)) {
+
+                producto.style.display = 'block';
+
+            } else {
+
+                producto.style.display = 'none';
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
