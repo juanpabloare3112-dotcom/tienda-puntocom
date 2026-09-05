@@ -1,70 +1,1453 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PuntoCom | Tienda Digital</title>
+<title>PuntoCom | Tienda Digital</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #080b12;
+    color: white;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #111827, #080b12);
+    padding: 28px 18px;
+    text-align: center;
+    border-bottom: 1px solid #252b38;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #7c3aed;
+}
+
+.subtitulo {
+    color: #aab2c0;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+/* BUSCADOR */
+
+.search {
+    max-width: 650px;
+    margin: 20px auto 0;
+}
+
+.search input {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #303747;
+    background: #111827;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.search input:focus {
+    border-color: #7c3aed;
+}
+
+/* CATEGORIAS */
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 15px;
+    background: #0b0f18;
+}
+
+.categorias button {
+    border: 1px solid #343b4c;
+    background: #151b27;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.categorias button:hover,
+.categorias button.activo {
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    border-color: transparent;
+}
+
+/* CONTENEDOR */
+
+.contenedor {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 15px 80px;
+}
+
+.titulo-seccion {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-seccion h1 {
+    font-size: 28px;
+}
+
+.titulo-seccion p {
+    color: #8e98aa;
+    margin-top: 7px;
+}
+
+/* PRODUCTOS */
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.producto {
+    background: #111722;
+    border: 1px solid #252d3c;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.2s, border 0.2s;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    border-color: #6d3df5;
+}
+
+.producto img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    background: #171d29;
+}
+
+.info {
+    padding: 18px;
+}
+
+.etiqueta {
+    display: inline-block;
+    background: #252b38;
+    color: #aeb8ca;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.producto h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.descripcion {
+    color: #9ba5b6;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 40px;
+}
+
+.precio {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #ffffff;
+}
+
+.comprar {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.comprar:hover {
+    filter: brightness(1.1);
+}
+
+/* INFORMACION */
+
+.informacion {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.info-box {
+    background: #111722;
+    border: 1px solid #252d3c;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.info-box .icono {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.info-box h3 {
+    margin-bottom: 8px;
+}
+
+.info-box p {
+    color: #9ba5b6;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* FOOTER */
+
+footer {
+    background: #06080d;
+    border-top: 1px solid #252b38;
+    padding: 30px 15px;
+    text-align: center;
+    color: #7f8999;
+    font-size: 13px;
+}
+
+footer strong {
+    color: white;
+}
+
+/* WHATSAPP */
+
+.whatsapp {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    z-index: 2000;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .productos {
+        grid-template-columns: 1fr;
+    }
+
+    .producto img {
+        height: 220px;
+    }
+
+    .titulo-seccion h1 {
+        font-size: 24px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        PUNTO<span>COM</span>
+    </div>
+
+    <div class="subtitulo">
+        🎮 Juegos · 📺 Streaming · 📡 TV Digital
+    </div>
+
+    <div class="search">
+        <input
+            type="text"
+            id="buscador"
+            placeholder="🔎 Buscar producto..."
+            onkeyup="buscarProducto()"
+        >
+    </div>
+
+</header>
+
+
+<!-- CATEGORIAS -->
+
+<nav class="categorias">
+
+    <button class="activo" onclick="mostrar('todos', this)">
+        🏠 Todo
+    </button>
+
+    <button onclick="mostrar('juegos', this)">
+        🎮 Juegos PS4 / PS5
+    </button>
+
+    <button onclick="mostrar('streaming', this)">
+        📺 Streaming
+    </button>
+
+    <button onclick="mostrar('tv', this)">
+        📡 TV DIGITAL
+    </button>
+
+</nav>
+
+
+<main class="contenedor">
+
+    <div class="titulo-seccion">
+
+        <h1>🔥 Productos destacados</h1>
+
+        <p>
+            Elegí tu producto y consultanos por WhatsApp
+        </p>
+
+    </div>
+
+
+    <section class="productos" id="productos">
+
+
+        <!-- PRODUCTO 1 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=FLYER+JUEGO"
+                alt="Juego PS5"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    🎮 PS5
+                </span>
+
+                <h3>
+                    Juego PS5
+                </h3>
+
+                <p class="descripcion">
+                    Juego digital para PlayStation 5.
+                </p>
+
+                <div class="precio">
+                    $25.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20el%20juego%20PS5"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 2 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=FLYER+PS4"
+                alt="Juego PS4"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    🎮 PS4
+                </span>
+
+                <h3>
+                    Juego PS4
+                </h3>
+
+                <p class="descripcion">
+                    Juego digital para PlayStation 4.
+                </p>
+
+                <div class="precio">
+                    $18.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20el%20juego%20PS4"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 3 -->
+
+        <article class="producto streaming">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=STREAMING"
+                alt="Streaming"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    📺 STREAMING
+                </span>
+
+                <h3>
+                    YouTube Premium
+                </h3>
+
+                <p class="descripcion">
+                    Cuenta privada · 30 días · Entrega inmediata.
+                </p>
+
+                <div class="precio">
+                    $8.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20YouTube%20Premium"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 4 -->
+
+        <article class="producto tv">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=TV+DIGITAL"
+                alt="TV Digital"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    📡 TV DIGITAL
+                </span>
+
+                <h3>
+                    LMIX TV DIGITAL
+                </h3>
+
+                <p class="descripcion">
+                    Canales HD/FHD, fútbol, películas, series y mucho más.
+                </p>
+
+                <div class="precio">
+                    $8.800
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20TV%20DIGITAL"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 5 -->
+
+        <article class="producto streaming">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=STREAMING"
+                alt="Servicio de streaming"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    📺 STREAMING
+                </span>
+
+                <h3>
+                    Servicio de Streaming
+                </h3>
+
+                <p class="descripcion">
+                    Acceso digital y entrega inmediata.
+                </p>
+
+                <div class="precio">
+                    $10.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20Streaming"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 6 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=OFERTA+PS4+PS5"
+                alt="Oferta juegos"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    🔥 OFERTA
+                </span>
+
+                <h3>
+                    Juegos PS4 / PS5
+                </h3>
+
+                <p class="descripcion">
+                    Consultá por nuestro catálogo actualizado.
+                </p>
+
+                <div class="precio">
+                    Consultar
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20ver%20el%20catálogo%20de%20juegos"
+                    target="_blank"
+                >
+                    📲 Ver catálogo
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- BENEFICIOS -->
+
+    <section class="informacion">
+
+        <div class="info-box">
+
+            <div class="icono">⚡</div>
+
+            <h3>
+                Entrega rápida
+            </h3>
+
+            <p>
+                Recibí tus productos digitales rápidamente.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="icono">🛡️</div>
+
+            <h3>
+                Atención
+            </h3>
+
+            <p>
+                Consultanos antes de comprar y te ayudamos.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="icono">📲</div>
+
+            <h3>
+                WhatsApp
+            </h3>
+
+            <p>
+                Realizá tu consulta directamente desde la tienda.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="icono">💻</div>
+
+            <h3>
+                Productos digitales
+            </h3>
+
+            <p>
+                Juegos, streaming y TV Digital en un solo lugar.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>PuntoCom</strong>
+
+    <br><br>
+
+    Tienda Digital
+
+    <br>
+
+    © 2026 PuntoCom · Todos los derechos reservados
+
+</footer>
+
+
+<!-- BOTON WHATSAPP -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20un%20producto"
+    target="_blank"
+    aria-label="WhatsApp"
+>
+    ☎
+</a>
+
+
+<script>
+
+/* CAMBIAR CATEGORIA */
+
+function mostrar(categoria, boton) {
+
+    const productos = document.querySelectorAll(".producto");
+
+    productos.forEach(producto => {
+
+        if (categoria === "todos") {
+
+            producto.style.display = "block";
+
+        } else if (producto.classList.contains(categoria)) {
+
+            producto.style.display = "block";
+
+        } else {
+
+            producto.style.display = "none";
+
         }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #080b12;
-            color: white;
+    });
+
+
+    const botones = document.querySelectorAll(".categorias button");
+
+    botones.forEach(btn => {
+        btn.classList.remove("activo");
+    });
+
+    boton.classList.add("activo");
+
+}
+
+
+/* BUSCADOR */
+
+function buscarProducto() {
+
+    const texto =
+        document.getElementById("buscador")
+        .value
+        .toLowerCase();
+
+    const productos =
+        document.querySelectorAll(".producto");
+
+    productos.forEach(producto => {
+
+        const contenido =
+            producto.innerText.toLowerCase();
+
+        if (contenido.includes(texto)) {
+
+            producto.style.display = "block";
+
+        } else {
+
+            producto.style.display = "none";
+
         }
 
-        header {
-            background: linear-gradient(135deg, #111827, #080b12);
-            padding: 25px 20px;
-            text-align: center;
-            border-bottom: 1px solid #252b38;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+    });
+
+}
+
+</script>
+
+</body>
+    </html>}
+
+.categorias button {
+    border: 1px solid #343b4c;
+    background: #151b27;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.categorias button:hover,
+.categorias button.activo {
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    border-color: transparent;
+}
+
+/* CONTENEDOR */
+
+.contenedor {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 15px 80px;
+}
+
+.titulo-seccion {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-seccion h1 {
+    font-size: 28px;
+}
+
+.titulo-seccion p {
+    color: #8e98aa;
+    margin-top: 7px;
+}
+
+/* PRODUCTOS */
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.producto {
+    background: #111722;
+    border: 1px solid #252d3c;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.2s, border 0.2s;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    border-color: #6d3df5;
+}
+
+.producto img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    background: #171d29;
+}
+
+.info {
+    padding: 18px;
+}
+
+.etiqueta {
+    display: inline-block;
+    background: #252b38;
+    color: #aeb8ca;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.producto h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.descripcion {
+    color: #9ba5b6;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 40px;
+}
+
+.precio {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #ffffff;
+}
+
+.comprar {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.comprar:hover {
+    filter: brightness(1.1);
+}
+
+/* INFORMACION */
+
+.informacion {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.info-box {
+    background: #111722;
+    border: 1px solid #252d3c;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.info-box .icono {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.info-box h3 {
+    margin-bottom: 8px;
+}
+
+.info-box p {
+    color: #9ba5b6;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* FOOTER */
+
+footer {
+    background: #06080d;
+    border-top: 1px solid #252b38;
+    padding: 30px 15px;
+    text-align: center;
+    color: #7f8999;
+    font-size: 13px;
+}
+
+footer strong {
+    color: white;
+}
+
+/* WHATSAPP */
+
+.whatsapp {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25d366;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    z-index: 2000;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 27px;
+    }
+
+    .productos {
+        grid-template-columns: 1fr;
+    }
+
+    .producto img {
+        height: 220px;
+    }
+
+    .titulo-seccion h1 {
+        font-size: 24px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        PUNTO<span>COM</span>
+    </div>
+
+    <div class="subtitulo">
+        🎮 Juegos · 📺 Streaming · 📡 TV Digital
+    </div>
+
+    <div class="search">
+        <input
+            type="text"
+            id="buscador"
+            placeholder="🔎 Buscar producto..."
+            onkeyup="buscarProducto()"
+        >
+    </div>
+
+</header>
+
+
+<!-- CATEGORIAS -->
+
+<nav class="categorias">
+
+    <button class="activo" onclick="mostrar('todos', this)">
+        🏠 Todo
+    </button>
+
+    <button onclick="mostrar('juegos', this)">
+        🎮 Juegos PS4 / PS5
+    </button>
+
+    <button onclick="mostrar('streaming', this)">
+        📺 Streaming
+    </button>
+
+    <button onclick="mostrar('tv', this)">
+        📡 TV DIGITAL
+    </button>
+
+</nav>
+
+
+<main class="contenedor">
+
+    <div class="titulo-seccion">
+
+        <h1>🔥 Productos destacados</h1>
+
+        <p>
+            Elegí tu producto y consultanos por WhatsApp
+        </p>
+
+    </div>
+
+
+    <section class="productos" id="productos">
+
+
+        <!-- PRODUCTO 1 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=FLYER+JUEGO"
+                alt="Juego PS5"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    🎮 PS5
+                </span>
+
+                <h3>
+                    Juego PS5
+                </h3>
+
+                <p class="descripcion">
+                    Juego digital para PlayStation 5.
+                </p>
+
+                <div class="precio">
+                    $25.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20el%20juego%20PS5"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 2 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=FLYER+PS4"
+                alt="Juego PS4"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    🎮 PS4
+                </span>
+
+                <h3>
+                    Juego PS4
+                </h3>
+
+                <p class="descripcion">
+                    Juego digital para PlayStation 4.
+                </p>
+
+                <div class="precio">
+                    $18.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20el%20juego%20PS4"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 3 -->
+
+        <article class="producto streaming">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=STREAMING"
+                alt="Streaming"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    📺 STREAMING
+                </span>
+
+                <h3>
+                    YouTube Premium
+                </h3>
+
+                <p class="descripcion">
+                    Cuenta privada · 30 días · Entrega inmediata.
+                </p>
+
+                <div class="precio">
+                    $8.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20YouTube%20Premium"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 4 -->
+
+        <article class="producto tv">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=TV+DIGITAL"
+                alt="TV Digital"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    📡 TV DIGITAL
+                </span>
+
+                <h3>
+                    LMIX TV DIGITAL
+                </h3>
+
+                <p class="descripcion">
+                    Canales HD/FHD, fútbol, películas, series y mucho más.
+                </p>
+
+                <div class="precio">
+                    $8.800
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20TV%20DIGITAL"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 5 -->
+
+        <article class="producto streaming">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=STREAMING"
+                alt="Servicio de streaming"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    📺 STREAMING
+                </span>
+
+                <h3>
+                    Servicio de Streaming
+                </h3>
+
+                <p class="descripcion">
+                    Acceso digital y entrega inmediata.
+                </p>
+
+                <div class="precio">
+                    $10.000
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20Streaming"
+                    target="_blank"
+                >
+                    📲 Consultar por WhatsApp
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCTO 6 -->
+
+        <article class="producto juegos">
+
+            <img
+                src="https://via.placeholder.com/600x400/111827/ffffff?text=OFERTA+PS4+PS5"
+                alt="Oferta juegos"
+            >
+
+            <div class="info">
+
+                <span class="etiqueta">
+                    🔥 OFERTA
+                </span>
+
+                <h3>
+                    Juegos PS4 / PS5
+                </h3>
+
+                <p class="descripcion">
+                    Consultá por nuestro catálogo actualizado.
+                </p>
+
+                <div class="precio">
+                    Consultar
+                </div>
+
+                <a
+                    class="comprar"
+                    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20ver%20el%20catálogo%20de%20juegos"
+                    target="_blank"
+                >
+                    📲 Ver catálogo
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- BENEFICIOS -->
+
+    <section class="informacion">
+
+        <div class="info-box">
+
+            <div class="icono">⚡</div>
+
+            <h3>
+                Entrega rápida
+            </h3>
+
+            <p>
+                Recibí tus productos digitales rápidamente.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="icono">🛡️</div>
+
+            <h3>
+                Atención
+            </h3>
+
+            <p>
+                Consultanos antes de comprar y te ayudamos.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="icono">📲</div>
+
+            <h3>
+                WhatsApp
+            </h3>
+
+            <p>
+                Realizá tu consulta directamente desde la tienda.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="icono">💻</div>
+
+            <h3>
+                Productos digitales
+            </h3>
+
+            <p>
+                Juegos, streaming y TV Digital en un solo lugar.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>PuntoCom</strong>
+
+    <br><br>
+
+    Tienda Digital
+
+    <br>
+
+    © 2026 PuntoCom · Todos los derechos reservados
+
+</footer>
+
+
+<!-- BOTON WHATSAPP -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/5490000000000?text=Hola!%20Quiero%20consultar%20por%20un%20producto"
+    target="_blank"
+    aria-label="WhatsApp"
+>
+    ☎
+</a>
+
+
+<script>
+
+/* CAMBIAR CATEGORIA */
+
+function mostrar(categoria, boton) {
+
+    const productos = document.querySelectorAll(".producto");
+
+    productos.forEach(producto => {
+
+        if (categoria === "todos") {
+
+            producto.style.display = "block";
+
+        } else if (producto.classList.contains(categoria)) {
+
+            producto.style.display = "block";
+
+        } else {
+
+            producto.style.display = "none";
+
         }
 
-        .logo {
-            font-size: 30px;
-            font-weight: bold;
-            letter-spacing: 2px;
+    });
+
+
+    const botones = document.querySelectorAll(".categorias button");
+
+    botones.forEach(btn => {
+        btn.classList.remove("activo");
+    });
+
+    boton.classList.add("activo");
+
+}
+
+
+/* BUSCADOR */
+
+function buscarProducto() {
+
+    const texto =
+        document.getElementById("buscador")
+        .value
+        .toLowerCase();
+
+    const productos =
+        document.querySelectorAll(".producto");
+
+    productos.forEach(producto => {
+
+        const contenido =
+            producto.innerText.toLowerCase();
+
+        if (contenido.includes(texto)) {
+
+            producto.style.display = "block";
+
+        } else {
+
+            producto.style.display = "none";
+
         }
 
-        .logo span {
-            color: #8b5cf6;
-        }
+    });
 
-        .subtitulo {
-            color: #9ca3af;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+}
 
-        nav {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+</script>
 
-        nav button {
-            background: #171c28;
-            border: 1px solid #303746;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        nav button:hover {
-            background: #7c3aed;
+</body>
+    </html>            background: #7c3aed;
         }
 
         .hero {
